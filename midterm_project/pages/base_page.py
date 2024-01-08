@@ -9,3 +9,6 @@ class BasePage:
     menu_item_catalog = (AppiumBy.ACCESSIBILITY_ID, 'menu item catalog')
     menu_item_api_calls = (AppiumBy.ACCESSIBILITY_ID, 'menu item api calls')
 
+    cart_badge = (AppiumBy.ACCESSIBILITY_ID, 'cart badge')
+    cart_item_count = (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="cart badge"]'
+                                       '/android.widget.TextView')

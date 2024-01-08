@@ -1,3 +1,4 @@
+from midterm_project.pages.product_page import ProductPage
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.base_page import BasePage
 from midterm_project.pages.products_page import ProductsPage
@@ -34,11 +35,11 @@ class ProductsSteps(BaseStep):
         """ Step checking sort """
         if sort_by == 'namae':
             if sort_name == "asc":
-                product_names = self.driver.find_elements(*ProductsPage.product_name)
+                product_names = self.driver.find_elements(*ProductsPage.product_names)
                 name_list = [name.text for name in product_names]
                 assert name_list == sorted(name_list)
             elif sort_name == "desc":
-                product_names = self.driver.find_elements(*ProductsPage.product_name)
+                product_names = self.driver.find_elements(*ProductsPage.product_names)
                 name_list = [name.text for name in product_names]
                 assert name_list == sorted(name_list, reverse=True)
         elif sort_by == 'price':
@@ -50,3 +51,13 @@ class ProductsSteps(BaseStep):
                 prices = self.driver.find_elements(*ProductsPage.product_prices)
                 prices_list = [float(price.text.replace("$", "")) for price in prices]
                 assert prices_list == sorted(prices_list, reverse=True)
+
+    def review_product(self):
+        """ Step review the product"""
+        self.click_element(ProductsPage.star_rating)
+
+    def check_review(self):
+        """ Step check the review """
+        assert self.get_text(ProductsPage.review_title) == "Thank you for submitting your review!"
+        self.click_element(ProductsPage.close_modal_btn)
+

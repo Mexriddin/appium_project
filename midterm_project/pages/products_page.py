@@ -1,3 +1,5 @@
+import random
+
 from appium.webdriver.common.appiumby import AppiumBy
 
 
@@ -14,5 +16,12 @@ class ProductsPage:
 
     sort_by_name_asc = (AppiumBy.ACCESSIBILITY_ID, 'nameAsc')
     sort_by_name_desc = (AppiumBy.ACCESSIBILITY_ID, 'nameDesc')
-    product_name = (AppiumBy.XPATH, '//android.widget.TextView[@content-desc="store item text" '
-                                    'and @text="Sauce Labs Backpack"]')
+    product_names = (AppiumBy.XPATH, '//android.widget.TextView[@content-desc="store item text" '
+                                     'and @text="Sauce Labs Backpack"]')
+
+    star_rating = (AppiumBy.XPATH, f'(//android.view.ViewGroup[@content-desc='
+                                   f'"review star {random.randint(1, 5)}"])[{random.randint(1, 4)}]')
+    review_title = (AppiumBy.XPATH, '//android.widget.TextView[@text="Thank you for submitting your review!"]')
+    close_modal_btn = (AppiumBy.ACCESSIBILITY_ID, 'Close Modal button')
+    first_product = (AppiumBy.XPATH, '//android.widget.TextView[@content-desc="store item text" '
+                                     'and @text="Sauce Labs Backpack"]')

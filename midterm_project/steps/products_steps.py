@@ -1,4 +1,3 @@
-from midterm_project.pages.product_page import ProductPage
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.base_page import BasePage
 from midterm_project.pages.products_page import ProductsPage

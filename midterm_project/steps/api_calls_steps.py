@@ -20,8 +20,8 @@ class ApiCallsSteps(BaseStep):
 
     def check_devices(self):
         """ Step check the devices"""
-        devices = self.elements_are_visible(ApiCallsPage.devices)
-        assert len(devices) > 0
+        devices_gr = self.elements_are_visible(ApiCallsPage.devices_gr)
+        assert len(devices_gr) > 0
 
     def call_devices_error(self, error_type):
         """ Step call the devices with errors """

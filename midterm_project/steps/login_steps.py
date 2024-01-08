@@ -29,11 +29,11 @@ class LoginSteps(BaseStep):
 
     def check_locked_out(self):
         """ Step checking if locked user login"""
-        assert self.get_text(LoginPage.error_msg_locked) == 'Sorry, this user has been locked out.'
+        assert self.get_text(LoginPage.generic_err_msg) == 'Sorry, this user has been locked out.'
 
     def check_no_exist(self):
         """ Step checking if user does not exist"""
-        assert self.get_text(LoginPage.error_msg_no_exist) == 'Provided credentials do not match any user in this service.'
+        assert self.get_text(LoginPage.generic_err_msg) == 'Provided credentials do not match any user in this service.'
 
     def check_err_msg_filed(self, filed):
         """ Step checking if login without credentials filed"""

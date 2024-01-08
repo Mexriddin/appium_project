@@ -22,16 +22,17 @@ class ProductSteps(BaseStep):
             if color_name in color.get_attribute("content-desc"):
                 color.click()
 
-    def plus_counter(self):
+    def plus_counter(self, plus=1):
         """ Step plus counter product """
-        self.click_element(ProductPage.counter_plus_btn)
-        print(self.get_text(ProductPage.counter_amount))
-        assert self.get_text(ProductPage.counter_amount) == '2'
+        for _ in range(plus):
+            self.click_element(ProductPage.counter_plus_btn)
+            print(self.get_text(ProductPage.counter_amount))
+        assert self.get_text(ProductPage.counter_amount) == str(1+plus)
 
-    def add_to_cart(self):
+    def add_to_cart(self, plus=1):
         """ Step adding to cart"""
         self.click_element(ProductPage.add_to_cart_button)
-        assert self.get_text(BasePage.cart_item_count) == '2'
+        assert self.get_text(BasePage.cart_item_count) == str(1+plus)
 
 
 

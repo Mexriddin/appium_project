@@ -33,22 +33,22 @@ class ProductsSteps(BaseStep):
 
     def check_sorted(self, sort_name, sort_by):
         """ Step checking sort """
-        if sort_by == 'namae':
+        if sort_by == 'name':
             if sort_name == "asc":
-                product_names = self.driver.find_elements(*ProductsPage.product_names)
+                product_names = self.elements_are_visible(ProductsPage.product_names)
                 name_list = [name.text for name in product_names]
                 assert name_list == sorted(name_list)
             elif sort_name == "desc":
-                product_names = self.driver.find_elements(*ProductsPage.product_names)
+                product_names = self.elements_are_visible(ProductsPage.product_names)
                 name_list = [name.text for name in product_names]
                 assert name_list == sorted(name_list, reverse=True)
         elif sort_by == 'price':
             if sort_name == "asc":
-                prices = self.driver.find_elements(*ProductsPage.product_prices)
+                prices = self.elements_are_visible(ProductsPage.product_prices)
                 prices_list = [float(price.text.replace("$", "")) for price in prices]
                 assert prices_list == sorted(prices_list)
             elif sort_name == "desc":
-                prices = self.driver.find_elements(*ProductsPage.product_prices)
+                prices = self.elements_are_visible(ProductsPage.product_prices)
                 prices_list = [float(price.text.replace("$", "")) for price in prices]
                 assert prices_list == sorted(prices_list, reverse=True)
 

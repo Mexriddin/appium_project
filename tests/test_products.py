@@ -7,7 +7,7 @@ class TestProducts:
 
     @pytest.mark.parametrize('sort_name', ['asc', 'desc'])
     @pytest.mark.parametrize("sort_by", ["price", "name"])
-    def test_sorting_by_price_asc(self, app, sort_by, sort_name):
+    def test_sorting(self, app, sort_by, sort_name):
         products_steps = ProductsSteps(app)
         products_steps.open_products_page()
         products_steps.open_sort_tab()

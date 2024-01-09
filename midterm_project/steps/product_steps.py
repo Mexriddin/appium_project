@@ -11,7 +11,7 @@ class ProductSteps(BaseStep):
         """ Step opening product page """
         product_name = self.get_text(ProductsPage.first_product)
         self.click_element(ProductsPage.first_product)
-        assert self.get_text(ProductPage.product_title) == product_name
+        assert self.get_text(ProductPage.product_title) == product_name, "The Product page did not open"
 
     def choose_color(self, color_name):
         """ Step choosing color product """
@@ -24,12 +24,13 @@ class ProductSteps(BaseStep):
         """ Step plus counter product """
         for _ in range(count):
             self.click_element(ProductPage.counter_plus_btn)
-        assert self.get_text(ProductPage.counter_amount) == str(1+count)
+        assert self.get_text(ProductPage.counter_amount) == str(1+count), "Counter amount was not added"
 
     def add_to_cart(self):
         """ Step adding to cart"""
         self.click_element(ProductPage.add_to_cart_button)
-        assert int(self.get_text(BasePage.cart_item_count)) >= int(self.get_text(ProductPage.counter_amount))
+        assert int(self.get_text(BasePage.cart_item_count)) >= int(self.get_text(ProductPage.counter_amount)), \
+            "Item was not added to cart"
 
 
 

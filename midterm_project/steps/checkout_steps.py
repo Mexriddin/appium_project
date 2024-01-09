@@ -38,19 +38,19 @@ class CheckOutSteps(BaseStep):
     def review_delivery_address(self, delivery_address):
         """ Step reviews delivery address"""
         with check:
-            assert delivery_address.full_name == self.get_text(CheckoutPage.full_name)
-            assert delivery_address.address_line1 == self.get_text(CheckoutPage.address_line_1)
-            assert delivery_address.city == self.get_text(CheckoutPage.city)
-            assert delivery_address.country in self.get_text(CheckoutPage.country_and_zip_code)
-            assert delivery_address.zip_code in self.get_text(CheckoutPage.country_and_zip_code)
+            assert delivery_address.full_name == self.get_text(CheckoutPage.full_name), ("Delivery full name is incorrect")
+            assert delivery_address.address_line1 == self.get_text(CheckoutPage.address_line_1), ("Delivery address is incorrect")
+            assert delivery_address.city == self.get_text(CheckoutPage.city), "City is incorrect"
+            assert delivery_address.country in self.get_text(CheckoutPage.country_and_zip_code), "Country is incorrect"
+            assert delivery_address.zip_code in self.get_text(CheckoutPage.country_and_zip_code), ("Zip code is incorrect")
 
     def review_payment_method(self, card_data):
         """ Step reviews payment method"""
         self.swipe_to_bottom_until_element_is_displayed(CheckoutPage.expiry_date)
         with check:
-            assert card_data.full_name == self.get_text(CheckoutPage.card_full_name)
-            assert card_data.card_number == "".join(self.get_text(CheckoutPage.card_number).split(" "))
-            assert card_data.expiration_date in "".join(self.get_text(CheckoutPage.expiry_date).split("/"))
+            assert card_data.full_name == self.get_text(CheckoutPage.card_full_name), "Card full name is incorrect"
+            assert card_data.card_number == "".join(self.get_text(CheckoutPage.card_number).split(" ")), "Card number is incorrect"
+            assert card_data.expiration_date in "".join(self.get_text(CheckoutPage.expiry_date).split("/")), "Expiry date is incorrect"
 
     def review_order_total_price(self):
         """ Step reviews order total price"""
@@ -59,7 +59,8 @@ class CheckOutSteps(BaseStep):
         self.swipe_to_top_until_element_is_displayed(CheckoutPage.checkout_title)
         total_price = ((float(self.get_text(CheckoutPage.product_price).replace("$", "")) *
                         int(self.get_text(CheckoutPage.total_number).split(" ")[0])) + delivery_price)
-        assert total_price == float(self.get_text(CheckoutPage.total_price).replace("$", ""))
+        assert total_price == float(self.get_text(CheckoutPage.total_price).replace("$", "")), \
+            "Order total price is not calculated correctly"
 
     def click_place_order(self):
         """ Step clicking place order"""
@@ -67,4 +68,4 @@ class CheckOutSteps(BaseStep):
 
     def check_complete(self):
         """ Check complete"""
-        assert self.get_text(CheckoutPage.complete_title) == 'Checkout Complete'
+        assert self.get_text(CheckoutPage.complete_title) == 'Checkout Complete', "The order is not completed"

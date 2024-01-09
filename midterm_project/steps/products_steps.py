@@ -10,12 +10,12 @@ class ProductsSteps(BaseStep):
         """ Step opening products page """
         self.open_menus()
         self.click_element(BasePage().menu_item_catalog)
-        assert self.get_text(ProductsPage.products_title) == "Products"
+        assert self.get_text(ProductsPage.products_title) == "Products", "The Products page did not open"
 
     def open_sort_tab(self):
         """ Step opening sort tab"""
         self.click_element(ProductsPage.sort_button)
-        assert self.get_text(ProductsPage.sort_title) == "Sort by:"
+        assert self.get_text(ProductsPage.sort_title) == "Sort by:", "The Sort tab did not open"
 
     def choose_sort(self, sort_name, sort_by):
         """ Step choosing sort"""
@@ -36,20 +36,20 @@ class ProductsSteps(BaseStep):
             if sort_name == "asc":
                 product_names = self.elements_are_visible(ProductsPage.product_names)
                 name_list = [name.text for name in product_names]
-                assert name_list == sorted(name_list)
+                assert name_list == sorted(name_list), "Product not sorted ascending by name"
             elif sort_name == "desc":
                 product_names = self.elements_are_visible(ProductsPage.product_names)
                 name_list = [name.text for name in product_names]
-                assert name_list == sorted(name_list, reverse=True)
+                assert name_list == sorted(name_list, reverse=True), "Product not sorted descending by name"
         elif sort_by == 'price':
             if sort_name == "asc":
                 prices = self.elements_are_visible(ProductsPage.product_prices)
                 prices_list = [float(price.text.replace("$", "")) for price in prices]
-                assert prices_list == sorted(prices_list)
+                assert prices_list == sorted(prices_list), "Product not sorted ascending by price"
             elif sort_name == "desc":
                 prices = self.elements_are_visible(ProductsPage.product_prices)
                 prices_list = [float(price.text.replace("$", "")) for price in prices]
-                assert prices_list == sorted(prices_list, reverse=True)
+                assert prices_list == sorted(prices_list, reverse=True), "Product not sorted descending by price"
 
     def review_product(self):
         """ Step review the product"""
@@ -57,6 +57,7 @@ class ProductsSteps(BaseStep):
 
     def check_review(self):
         """ Step check the review """
-        assert self.get_text(ProductsPage.review_title) == "Thank you for submitting your review!"
+        assert self.get_text(ProductsPage.review_title) == "Thank you for submitting your review!", \
+            "The Review tab did not open"
         self.click_element(ProductsPage.close_modal_btn)
 

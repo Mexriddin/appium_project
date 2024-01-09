@@ -11,7 +11,7 @@ class LoginSteps(BaseStep):
         """ Step opening login page"""
         self.open_menus()
         self.click_element(BasePage().menu_item_login)
-        assert self.get_text(LoginPage.login_title) == "Login"
+        assert self.get_text(LoginPage.login_title) == "Login", "The Login page didn't open"
 
     def login(self, username, password):
         """ Step logining with username and password"""
@@ -22,20 +22,24 @@ class LoginSteps(BaseStep):
 
     def check_successful_login(self):
         """ Step checking if successful login"""
-        assert self.get_text(ProductsPage.products_title) == 'Products'
+        assert self.get_text(ProductsPage.products_title) == 'Products', "User is not login"
 
     def check_locked_out(self):
         """ Step checking if locked user login"""
-        assert self.get_text(LoginPage.generic_err_msg) == 'Sorry, this user has been locked out.'
+        assert self.get_text(LoginPage.generic_err_msg) == 'Sorry, this user has been locked out.', \
+            "This user is blocked but logged in"
 
     def check_no_exist(self):
         """ Step checking if user does not exist"""
-        assert self.get_text(LoginPage.generic_err_msg) == 'Provided credentials do not match any user in this service.'
+        assert self.get_text(LoginPage.generic_err_msg) == 'Provided credentials do not match any user in this service.', \
+            "This user does not exist but is logged in"
 
     def check_err_msg_filed(self, filed):
         """ Step checking if login without credentials filed"""
         if filed == 'password':
-            assert self.get_text(LoginPage.password_err_msg) == 'Password is required'
+            assert self.get_text(LoginPage.password_err_msg) == 'Password is required', \
+                "Password is required but logged in"
         elif filed == 'username':
-            assert self.get_text(LoginPage.username_err_msg) == 'Username is required'
+            assert self.get_text(LoginPage.username_err_msg) == 'Username is required', \
+                "Username is required and logged in"
 

@@ -10,7 +10,7 @@ class ApiCallsSteps(BaseStep):
         """ Step opening api calls page """
         self.open_menus()
         self.click_element(BasePage().menu_item_api_calls)
-        assert self.get_text(ApiCallsPage.api_calls_title) == "API calls"
+        assert self.get_text(ApiCallsPage.api_calls_title) == "API calls", "The API calls page did not open"
 
     def call_devices(self):
         """ Step call the devices """
@@ -20,7 +20,7 @@ class ApiCallsSteps(BaseStep):
     def check_devices(self):
         """ Step check the devices"""
         devices_gr = self.elements_are_visible(ApiCallsPage.devices_gr)
-        assert len(devices_gr) > 0
+        assert len(devices_gr) > 0, "Devices were not displayed"
 
     def call_devices_error(self, error_type):
         """ Step call the devices with errors """
@@ -33,8 +33,10 @@ class ApiCallsSteps(BaseStep):
     def check_devices_error(self, error_type):
         """ Step check call the devices with errors """
         if error_type == 'unauthorized':
-            assert self.get_text(ApiCallsPage.unauthorized_msg) == 'Unauthorized'
+            assert self.get_text(ApiCallsPage.unauthorized_msg) == 'Unauthorized', \
+                "Unauthorized error message is not displayed"
         elif error_type == 'not_found':
-            assert self.get_text(ApiCallsPage.not_found_msg) == 'Not found'
+            assert self.get_text(ApiCallsPage.not_found_msg) == 'Not found', \
+                "Not found error message is not displayed"
 
 

@@ -14,7 +14,7 @@ class MyCartSteps(BaseStep):
 
     def check_empty_my_cart(self):
         """ Step checking empty My cart"""
-        assert self.get_text(MyCartPage.my_cart_title) == "No Items"
+        assert self.get_text(MyCartPage.my_cart_title) == "No Items", "The My Cart page didn't open"
 
     def open_not_empty_my_cart_page(self):
         """ Step opening not empty My cart """
@@ -25,15 +25,17 @@ class MyCartSteps(BaseStep):
         self.click_element(ProductPage.add_to_cart_button)
         self.click_element(BasePage.cart_badge)
 
-    def plus_counter(self, plus=1):
+    def plus_counter(self, count=1):
         """ Step plus counter product """
-        for _ in range(plus):
+        for _ in range(count):
             self.elements_are_visible(ProductPage.counter_plus_btn)[0].click()
-        assert self.elements_are_visible(ProductPage.counter_amount)[0].text == str(1+plus)
+        assert self.elements_are_visible(ProductPage.counter_amount)[0].text == str(1+count), \
+            "Counter amount was not added"
 
     def check_update_count(self):
         """ Step checking update counter product """
-        assert self.get_text(BasePage.cart_item_count) == self.get_text(MyCartPage.total_number).split(" ")[0]
+        assert self.get_text(BasePage.cart_item_count) == self.get_text(MyCartPage.total_number).split(" ")[0], \
+            "The count of the items has not been updated"
 
     def check_total_price(self):
         """ Step checking total price """
@@ -42,7 +44,8 @@ class MyCartSteps(BaseStep):
         total_price = 0
         for i in range(len(counts)):
             total_price += int(counts[i].text) * float(prices[i].text.replace("$", ""))
-        assert total_price == float(self.get_text(MyCartPage.total_price).replace("$", ""))
+        assert total_price == float(self.get_text(MyCartPage.total_price).replace("$", "")), \
+            "Cart total price is not calculated correctly"
 
 
 

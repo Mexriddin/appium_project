@@ -14,4 +14,4 @@ class LogoutSteps(BaseStep):
     def check_logout(self):
         """ Step check logout"""
         msg = self.alert_is_present().text
-        assert msg == 'You are successfully logged out.'
+        assert msg == 'You are successfully logged out.', "User is not logged"

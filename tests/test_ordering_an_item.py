@@ -14,11 +14,11 @@ class TestBuyProduct:
         products_step = ProductsSteps(app)
         products_step.open_products_page()
 
-        product_step = ProductSteps(app)
-        product_step.open_product_page()
-        product_step.choose_color('red')
-        product_step.plus_counter()
-        product_step.add_to_cart()
+        product_steps = ProductSteps(app)
+        product_steps.open_product_page()
+        product_steps.choose_color('red')
+        product_steps.plus_counter()
+        product_steps.add_to_cart()
 
         my_cart_steps = MyCartSteps(app)
         my_cart_steps.open_my_cart_page()

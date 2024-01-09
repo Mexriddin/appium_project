@@ -1,5 +1,4 @@
 import pytest
-
 from midterm_project.steps.products_steps import ProductsSteps
 
 

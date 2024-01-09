@@ -1,5 +1,3 @@
-import pytest
-
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.base_page import BasePage
 from midterm_project.pages.api_calls_page import ApiCallsPage
@@ -12,6 +10,7 @@ class ApiCallsSteps(BaseStep):
         """ Step opening api calls page """
         self.open_menus()
         self.click_element(BasePage().menu_item_api_calls)
+        len(self.elements_are_visible(ApiCallsPage.devices_gr))
         assert self.get_text(ApiCallsPage.api_calls_title) == "API calls"
 
     def call_devices(self):

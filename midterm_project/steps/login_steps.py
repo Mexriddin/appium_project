@@ -1,4 +1,5 @@
-from pytest_check import check
+import pytest
+
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.login_page import LoginPage
 from midterm_project.pages.base_page import BasePage
@@ -16,11 +17,9 @@ class LoginSteps(BaseStep):
 
     def login(self, username, password):
         """ Step logining with username and password"""
+        print(username, password)
         self.fill(LoginPage.input_username, username)
         self.fill(LoginPage.input_password, password)
-        # with check:
-        #     assert self.get_text(LoginPage.input_username) == username
-        #     assert self.get_text(LoginPage.input_password)
         self.click_element(LoginPage.login_button)
 
     def check_successful_login(self):
@@ -39,6 +38,6 @@ class LoginSteps(BaseStep):
         """ Step checking if login without credentials filed"""
         if filed == 'password':
             assert self.get_text(LoginPage.password_err_msg) == 'Password is required'
-        else:
+        elif filed == 'username':
             assert self.get_text(LoginPage.username_err_msg) == 'Username is required'
 

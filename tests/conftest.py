@@ -33,3 +33,4 @@ def app(appium_driver):
     yield appium_driver
     print("\nTerminating app...")
     appium_driver.terminate_app(app_package)
+

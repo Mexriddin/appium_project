@@ -10,3 +10,4 @@ class MyCartPage:
     total_number = (AppiumBy.ACCESSIBILITY_ID, 'total number')
     product_price = (AppiumBy.ACCESSIBILITY_ID, 'product price')
     total_price = (AppiumBy.ACCESSIBILITY_ID, 'total price')
+    proceed_to_checkout = (AppiumBy.ACCESSIBILITY_ID, 'Proceed To Checkout button')

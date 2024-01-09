@@ -33,6 +33,11 @@ class BaseStep:
         """ Step returns list elements visible """
         return self.wait.until(EC.visibility_of_all_elements_located(locator))
 
+    def element_is_disappear(self, locator):
+        """ Step wait disappears element """
+        self.wait.until(EC.staleness_of(locator))
+
+
     def get_text(self, locator):
         """ Step returns text from element visible """
         self.wait.until(EC.visibility_of_element_located(locator))

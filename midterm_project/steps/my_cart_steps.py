@@ -3,13 +3,12 @@ from midterm_project.pages.products_page import ProductsPage
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.base_page import BasePage
 from midterm_project.pages.my_cart_page import MyCartPage
-from midterm_project.steps.product_steps import ProductSteps
 
 
 class MyCartSteps(BaseStep):
     """ Steps for My Cart Page """
 
-    def open_empty_my_cart_page(self):
+    def open_my_cart_page(self):
         """ Step opening empty my cart page """
         self.click_element(BasePage.cart_badge)
 

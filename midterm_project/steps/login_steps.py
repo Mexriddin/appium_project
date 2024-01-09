@@ -1,5 +1,3 @@
-from selenium.webdriver.common.by import By
-
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.login_page import LoginPage
 from midterm_project.pages.base_page import BasePage

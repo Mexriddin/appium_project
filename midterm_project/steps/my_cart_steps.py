@@ -38,10 +38,10 @@ class MyCartSteps(BaseStep):
     def check_total_price(self):
         """ Step checking total price """
         counts = self.elements_are_visible(MyCartPage.counter_amount)
-        costs = self.elements_are_visible(MyCartPage.product_price)
+        prices = self.elements_are_visible(MyCartPage.product_price)
         total_price = 0
         for i in range(len(counts)):
-            total_price += int(counts[i].text) * float(costs[i].text.replace("$", ""))
+            total_price += int(counts[i].text) * float(prices[i].text.replace("$", ""))
         assert total_price == float(self.get_text(MyCartPage.total_price).replace("$", ""))
 
 

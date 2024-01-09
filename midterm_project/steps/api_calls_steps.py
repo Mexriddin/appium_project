@@ -14,7 +14,7 @@ class ApiCallsSteps(BaseStep):
 
     def call_devices(self):
         """ Step call the devices """
-        self.element_is_disappear(ApiCallsPage.loading_dc)
+        self.wait_disappears_element(ApiCallsPage.loading_dc)
         self.click_element(ApiCallsPage.us_dc)
 
     def check_devices(self):
@@ -24,7 +24,7 @@ class ApiCallsSteps(BaseStep):
 
     def call_devices_error(self, error_type):
         """ Step call the devices with errors """
-        self.element_is_disappear(ApiCallsPage.loading_dc)
+        self.wait_disappears_element(ApiCallsPage.loading_dc)
         if error_type == 'unauthorized':
             self.click_element(ApiCallsPage.unauthorized_btn)
         elif error_type == 'not_found':

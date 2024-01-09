@@ -1,13 +1,12 @@
 from selenium.common import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
-from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from midterm_project.pages.base_page import BasePage
 
 
 class BaseStep:
-    """Base steps"""
+    """Base common steps"""
 
     def __init__(self, driver):
         self.driver = driver
@@ -36,13 +35,14 @@ class BaseStep:
         return self.wait.until(EC.visibility_of_all_elements_located(locator))
 
     def is_element_present(self, locator):
+        """ Steps returns true if element is present """
         try:
             self.wait.until(EC.presence_of_element_located(locator))
             return True
         except TimeoutException:
             return False
 
-    def element_is_disappear(self, locator):
+    def wait_disappears_element(self, locator):
         """ Step wait disappears element """
         self.wait.until_not(EC.visibility_of_element_located(locator))
 
@@ -51,22 +51,20 @@ class BaseStep:
         self.wait.until(EC.visibility_of_element_located(locator))
         return self.driver.find_element(*locator).text
 
-    def swipe_to_bottom_until_element_is_displayed(self, driver: WebDriver, locator):
+    def swipe_to_bottom_until_element_is_displayed(self, locator):
+        """ Step swipes to bottom until element is displayed"""
         while True:
             try:
-                element = driver.find_element(*locator)
-                if element.is_displayed():
+                if self.driver.find_element(*locator).is_displayed():
                     break
             except NoSuchElementException:
-                driver.swipe(100, 600, 100, 200, 300)
-        return element
+                self.driver.swipe(100, 600, 100, 200, 300)
 
-    def swipe_to_top_until_element_is_displayed(self, driver: WebDriver, locator):
+    def swipe_to_top_until_element_is_displayed(self, locator):
+        """ Step swipes to top until element is displayed"""
         while True:
             try:
-                element = driver.find_element(*locator)
-                if element.is_displayed():
+                if self.driver.find_element(*locator).is_displayed():
                     break
             except NoSuchElementException:
-                driver.swipe(100, 400, 100, 1000, 300)
-        return element
+                self.driver.swipe(100, 400, 100, 1000, 300)

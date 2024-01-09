@@ -59,8 +59,9 @@ class CheckOutSteps(BaseStep):
         self.swipe_to_top_until_element_is_displayed(CheckoutPage.checkout_title)
         total_price = ((float(self.get_text(CheckoutPage.product_price).replace("$", "")) *
                         int(self.get_text(CheckoutPage.total_number).split(" ")[0])) + delivery_price)
-        assert total_price == float(self.get_text(CheckoutPage.total_price).replace("$", "")), \
-            "Order total price is not calculated correctly"
+        actual_total_price = float(self.get_text(CheckoutPage.total_price).replace("$", ""))
+        assert total_price == actual_total_price, \
+            f"Order total price is not calculated correctly\nExpected:{total_price} Actual:{actual_total_price}"
 
     def click_place_order(self):
         """ Step clicking place order"""

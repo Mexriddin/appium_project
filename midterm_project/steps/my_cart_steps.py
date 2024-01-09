@@ -20,9 +20,10 @@ class MyCartSteps(BaseStep):
         """ Step opening not empty My cart """
         self.click_element(ProductsPage.first_product)
         self.click_element(ProductPage.add_to_cart_button)
-        self.driver.back()
-        self.click_element(ProductsPage.second_product)
-        self.click_element(ProductPage.add_to_cart_button)
+
+        # self.driver.back()
+        # self.click_element(ProductsPage.second_product)
+        # self.click_element(ProductPage.add_to_cart_button)
         self.click_element(BasePage.cart_badge)
 
     def plus_counter(self, count=1):

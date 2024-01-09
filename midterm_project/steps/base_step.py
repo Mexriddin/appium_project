@@ -58,7 +58,7 @@ class BaseStep:
                 if self.driver.find_element(*locator).is_displayed():
                     break
             except NoSuchElementException:
-                self.driver.swipe(100, 600, 100, 200, 300)
+                self.driver.swipe(100, 800, 100, 200, 300)
 
     def swipe_to_top_until_element_is_displayed(self, locator):
         """ Step swipes to top until element is displayed"""

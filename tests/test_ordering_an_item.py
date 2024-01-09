@@ -1,3 +1,5 @@
+import pytest
+
 from midterm_project.steps.products_steps import ProductsSteps
 from midterm_project.steps.product_steps import ProductSteps
 from midterm_project.steps.my_cart_steps import MyCartSteps
@@ -7,6 +9,7 @@ from midterm_project.utils.utils import generate_shipping_address, generate_card
 
 
 class TestBuyProduct:
+    @pytest.mark.smoke
     def test_ordering_an_item(self, app):
         products_step = ProductsSteps(app)
         products_step.open_products_page()

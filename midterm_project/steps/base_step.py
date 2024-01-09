@@ -1,3 +1,4 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from midterm_project.pages.base_page import BasePage
@@ -31,6 +32,13 @@ class BaseStep:
     def elements_are_visible(self, locator):
         """ Step returns list elements visible """
         return self.wait.until(EC.visibility_of_all_elements_located(locator))
+
+    def is_element_present(self, locator):
+        try:
+            self.wait.until(EC.presence_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False
 
     def element_is_disappear(self, locator):
         """ Step wait disappears element """

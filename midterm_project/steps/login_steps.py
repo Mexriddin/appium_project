@@ -1,3 +1,5 @@
+from selenium.webdriver.common.by import By
+
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.login_page import LoginPage
 from midterm_project.pages.base_page import BasePage
@@ -15,9 +17,10 @@ class LoginSteps(BaseStep):
 
     def login(self, username, password):
         """ Step logining with username and password"""
-        self.fill(LoginPage.input_username, username)
-        self.fill(LoginPage.input_password, password)
-        self.click_element(LoginPage.login_button)
+        if self.is_element_present(LoginPage.login_title):
+            self.fill(LoginPage.input_username, username)
+            self.fill(LoginPage.input_password, password)
+            self.click_element(LoginPage.login_button)
 
     def check_successful_login(self):
         """ Step checking if successful login"""

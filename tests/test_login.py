@@ -8,6 +8,7 @@ from midterm_project.utils.utils import (generate_no_exist_user_data,
 
 class TestLogin:
 
+    @pytest.mark.negative
     def test_login_locked_user(self, app):
         login_steps = LoginSteps(app)
         login_steps.open_login_page()
@@ -15,6 +16,7 @@ class TestLogin:
         login_steps.login(locked_user.username, locked_user.password)
         login_steps.check_locked_out()
 
+    @pytest.mark.negative
     def test_login_no_exist_user(self, app):
         login_steps = LoginSteps(app)
         login_steps.open_login_page()
@@ -22,6 +24,7 @@ class TestLogin:
         login_steps.login(no_exist_user.username, no_exist_user.password)
         login_steps.check_no_exist()
 
+    @pytest.mark.negative
     @pytest.mark.parametrize('without_field',
                              ['both', 'username', 'password'],
                              ids=['without_both_filed', 'without username', 'without password'])
@@ -32,6 +35,8 @@ class TestLogin:
         login_steps.login(invalid_login_data.username, invalid_login_data.password)
         login_steps.check_err_msg_filed(without_field)
 
+    @pytest.mark.smoke
+    @pytest.mark.positive
     def test_login_active_user(self, app):
         login_steps = LoginSteps(app)
         login_steps.open_login_page()

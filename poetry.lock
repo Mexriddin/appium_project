@@ -120,13 +120,13 @@ files = [
 
 [[package]]
 name = "faker"
-version = "22.0.0"
+version = "22.1.0"
 description = "Faker is a Python package that generates fake data for you."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "Faker-22.0.0-py3-none-any.whl", hash = "sha256:9c22c0a734ca01c6e4f2259eab5dab9081905a9d67b27272aea5c9feeb5a3789"},
-    {file = "Faker-22.0.0.tar.gz", hash = "sha256:1d5dc0a75da7bc40741ee4c84d99dc087b97bd086d4222ad06ac4dd2219bcf3f"},
+    {file = "Faker-22.1.0-py3-none-any.whl", hash = "sha256:d1b8fe8e8fc96d816294a301741940c2229dcf1f5dd1231805666e4005cc6353"},
+    {file = "Faker-22.1.0.tar.gz", hash = "sha256:3cd0e04ed7da1bb8037afc40d1127d19e0ac4afac247a1fe1d8dde9b5c6d6e5b"},
 ]
 
 [package.dependencies]
@@ -250,17 +250,17 @@ testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "no
 
 [[package]]
 name = "pytest-check"
-version = "2.2.3"
+version = "2.2.4"
 description = "A pytest plugin that allows multiple failures per test."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pytest_check-2.2.3-py3-none-any.whl", hash = "sha256:d2643066fb805ca380b9251ef641a22dddc339018179a1e5f0b4626a5ff7e560"},
-    {file = "pytest_check-2.2.3.tar.gz", hash = "sha256:6df03264b6bbcf25cd8615120cda03b4e6d11fdb2b7c8dde6a9c8fef18a7495c"},
+    {file = "pytest_check-2.2.4-py3-none-any.whl", hash = "sha256:e2bd99184a5712d1538ce2da407e8dab74521bafc5f4d2d187317a8b307f9576"},
+    {file = "pytest_check-2.2.4.tar.gz", hash = "sha256:d2e696603141f5b2de905b93583e45984ec3c61cec702649deb10bd9748560bb"},
 ]
 
 [package.dependencies]
-pytest = "*"
+pytest = ">=7.0.0"
 
 [[package]]
 name = "python-dateutil"

@@ -10,11 +10,11 @@ class ApiCallsSteps(BaseStep):
         """ Step opening api calls page """
         self.open_menus()
         self.click_element(BasePage().menu_item_api_calls)
-        len(self.elements_are_visible(ApiCallsPage.devices_gr))
         assert self.get_text(ApiCallsPage.api_calls_title) == "API calls"
 
     def call_devices(self):
         """ Step call the devices """
+        self.element_is_disappear(ApiCallsPage.loading_dc)
         self.click_element(ApiCallsPage.us_dc)
 
     def check_devices(self):
@@ -24,6 +24,7 @@ class ApiCallsSteps(BaseStep):
 
     def call_devices_error(self, error_type):
         """ Step call the devices with errors """
+        self.element_is_disappear(ApiCallsPage.loading_dc)
         if error_type == 'unauthorized':
             self.click_element(ApiCallsPage.unauthorized_btn)
         elif error_type == 'not_found':

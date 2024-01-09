@@ -20,21 +20,36 @@ class MyCartSteps(BaseStep):
         """ Step opening not empty My cart """
         self.click_element(ProductsPage.first_product)
         self.click_element(ProductPage.add_to_cart_button)
+        self.driver.back()
+        self.click_element(ProductsPage.second_product)
+        self.click_element(ProductPage.add_to_cart_button)
         self.click_element(BasePage.cart_badge)
 
     def plus_counter(self, plus=1):
         """ Step plus counter product """
         for _ in range(plus):
-            self.click_element(ProductPage.counter_plus_btn)
-            print(self.get_text(ProductPage.counter_amount))
-        assert self.get_text(ProductPage.counter_amount) == str(1+plus)
+            self.elements_are_visible(ProductPage.counter_plus_btn)[0].click()
+        assert self.elements_are_visible(ProductPage.counter_amount)[0].text == str(1+plus)
 
     def check_update_count(self):
         """ Step checking update counter product """
-        assert self.get_text(MyCartPage.counter_amount) == self.get_text(MyCartPage.total_number).split(" ")[0]
+        assert self.get_text(BasePage.cart_item_count) == self.get_text(MyCartPage.total_number).split(" ")[0]
 
     def check_total_price(self):
         """ Step checking total price """
-        count = int(self.get_text(MyCartPage.counter_amount))
-        cost = float(self.get_text(MyCartPage.product_price).replace("$", ""))
-        assert count * cost == float(self.get_text(MyCartPage.total_price).replace("$", ""))
+        counts = self.elements_are_visible(MyCartPage.counter_amount)
+        costs = self.elements_are_visible(MyCartPage.product_price)
+        total_price = 0
+        for i in range(len(counts)):
+            total_price += int(counts[i].text) * float(costs[i].text.replace("$", ""))
+        assert total_price == float(self.get_text(MyCartPage.total_price).replace("$", ""))
+
+
+
+
+
+
+
+
+
+

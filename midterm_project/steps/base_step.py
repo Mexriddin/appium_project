@@ -8,8 +8,7 @@ class BaseStep:
 
     def __init__(self, driver):
         self.driver = driver
-        driver.implicitly_wait(10)
-        self.wait = WebDriverWait(self.driver, 10, poll_frequency=1)
+        self.wait = WebDriverWait(self.driver, 5, poll_frequency=1)
 
     def open_menus(self):
         """ Step to open the menu section """
@@ -35,8 +34,7 @@ class BaseStep:
 
     def element_is_disappear(self, locator):
         """ Step wait disappears element """
-        self.wait.until(EC.staleness_of(locator))
-
+        self.wait.until_not(EC.visibility_of_element_located(locator))
 
     def get_text(self, locator):
         """ Step returns text from element visible """

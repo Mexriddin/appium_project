@@ -14,14 +14,14 @@ def get_locked_out_user_data():
 
 
 def generate_no_exist_user_data():
-    return LoginData(username=faker.email(), password=str(random.randint(0, 10000000)))
+    return LoginData(username=faker.email(), password=str(random.randint(10000000, 99999999)))
 
 
 def generate_invalid_login_data(invalid_field):
     data = LoginData()
     if invalid_field == 'username':
         data.__setattr__(invalid_field, '')
-        data.__setattr__('password', random.randint(10000000, 99999999, ))
+        data.__setattr__('password', random.randint(10000000, 99999999))
     elif invalid_field == 'password':
         data.__setattr__(invalid_field, '')
         data.__setattr__('username', faker.email())

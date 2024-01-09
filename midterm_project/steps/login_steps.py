@@ -1,5 +1,3 @@
-import pytest
-
 from midterm_project.steps.base_step import BaseStep
 from midterm_project.pages.login_page import LoginPage
 from midterm_project.pages.base_page import BasePage
@@ -17,7 +15,6 @@ class LoginSteps(BaseStep):
 
     def login(self, username, password):
         """ Step logining with username and password"""
-        print(username, password)
         self.fill(LoginPage.input_username, username)
         self.fill(LoginPage.input_password, password)
         self.click_element(LoginPage.login_button)

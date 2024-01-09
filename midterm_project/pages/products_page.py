@@ -24,3 +24,5 @@ class ProductsPage:
     close_modal_btn = (AppiumBy.ACCESSIBILITY_ID, 'Close Modal button')
     first_product = (AppiumBy.XPATH, '//android.widget.TextView[@content-desc="store item text" '
                                      'and @text="Sauce Labs Backpack"]')
+    second_product = (AppiumBy.XPATH, '//android.widget.TextView[@content-desc="store item text" '
+                                      'and @text="Sauce Labs Bike Light"]')

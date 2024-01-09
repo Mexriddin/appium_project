@@ -11,5 +11,5 @@ class TestProduct:
         product_steps = ProductSteps(app)
         product_steps.open_product_page()
         product_steps.choose_color("red")
-        # product_steps.plus_counter()
-        product_steps.add_to_cart(1)
+        product_steps.plus_counter(2)
+        product_steps.add_to_cart()

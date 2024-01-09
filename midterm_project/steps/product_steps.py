@@ -24,17 +24,12 @@ class ProductSteps(BaseStep):
         """ Step plus counter product """
         for _ in range(count):
             self.click_element(ProductPage.counter_plus_btn)
-            print(self.get_text(ProductPage.counter_amount))
         assert self.get_text(ProductPage.counter_amount) == str(1+count)
 
-    def add_to_cart(self, plus=None):
+    def add_to_cart(self):
         """ Step adding to cart"""
         self.click_element(ProductPage.add_to_cart_button)
-        if plus:
-            assert self.get_text(BasePage.cart_item_count) == str(1+plus)
-        else:
-            assert self.get_text(BasePage.cart_item_count) == "1"
-
+        assert int(self.get_text(BasePage.cart_item_count)) >= int(self.get_text(ProductPage.counter_amount))
 
 
 

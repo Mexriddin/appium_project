@@ -1,4 +1,6 @@
 from selenium.common import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
+from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from midterm_project.pages.base_page import BasePage
@@ -48,3 +50,23 @@ class BaseStep:
         """ Step returns text from element visible """
         self.wait.until(EC.visibility_of_element_located(locator))
         return self.driver.find_element(*locator).text
+
+    def swipe_to_bottom_until_element_is_displayed(self, driver: WebDriver, locator):
+        while True:
+            try:
+                element = driver.find_element(*locator)
+                if element.is_displayed():
+                    break
+            except NoSuchElementException:
+                driver.swipe(100, 600, 100, 200, 300)
+        return element
+
+    def swipe_to_top_until_element_is_displayed(self, driver: WebDriver, locator):
+        while True:
+            try:
+                element = driver.find_element(*locator)
+                if element.is_displayed():
+                    break
+            except NoSuchElementException:
+                driver.swipe(100, 400, 100, 1000, 300)
+        return element

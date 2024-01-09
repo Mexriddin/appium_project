@@ -38,7 +38,10 @@ class TestBuyProduct:
         checkout_steps.enter_card_data(card_data)
         checkout_steps.click_review_order()
 
-        # checkout_steps.check_total_price()
+        checkout_steps.review_delivery_address(shipping_address)
+        checkout_steps.review_payment_method(card_data)
+        checkout_steps.review_order_total_price()
+
         checkout_steps.click_place_order()
         checkout_steps.check_complete()
 

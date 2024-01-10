@@ -125,19 +125,19 @@ All tests:
 pytest
 ```
 
-Positive testa:
+Positive tests:
 
 ```sh
 pytest -m  positive
 ```
 
-Negative testa:
+Negative tests:
 
 ```sh
 pytest -m  negative
 ```
 
-Smoke testa:
+Smoke tests:
 
 ```sh
 pytest -m  smoke

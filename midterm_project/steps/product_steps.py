@@ -29,12 +29,11 @@ class ProductSteps(BaseStep):
     def add_to_cart(self):
         """ Step adding to cart"""
         self.click_element(ProductPage.add_to_cart_button)
+
+    def check_added_to_cart(self):
+        """ Step checking to see if item is added to cart"""
         assert int(self.get_text(BasePage.cart_item_count)) >= int(self.get_text(ProductPage.counter_amount)), \
             "Item was not added to cart"
-
-
-
-
 
 
 

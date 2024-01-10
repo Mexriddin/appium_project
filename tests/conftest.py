@@ -1,4 +1,3 @@
-import os.path
 import pytest
 from appium import webdriver
 from appium.options.common.base import AppiumOptions

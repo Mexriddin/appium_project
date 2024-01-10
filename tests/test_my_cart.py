@@ -7,7 +7,7 @@ class TestMyCart:
         my_cart_steps.open_my_cart_page()
         my_cart_steps.check_empty_my_cart()
 
-    def test_not_empty_my_cart(self, app):
+    def test_update_count_item_in_my_cart(self, app):
         my_cart_steps = MyCartSteps(app)
         my_cart_steps.open_not_empty_my_cart_page()
         my_cart_steps.plus_counter()

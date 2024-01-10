@@ -12,8 +12,8 @@ def appium_driver():
         'platformName': 'android',
         'deviceName': '@Pixel_3a_API_34',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': 'C:\\Users\\mexriddin maxkamtaev\\PycharmProjects\\appium-homework-pr\\midterm_project\\app\MyDemoApp.apk'
-        # 'appium:app': f'{os.path.dirname(os.getcwd())}\\midterm_project\\app\MyDemoApp.apk'
+        'appium:app': 'C:\\Users\\mexriddin maxkamtaev\\PycharmProjects\\appium-homework-pr\\midterm_project\\app'
+                      '\MyDemoApp.apk'
 
     }
     options = AppiumOptions().load_capabilities(capabilities)

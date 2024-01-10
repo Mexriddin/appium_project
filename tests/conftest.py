@@ -34,9 +34,4 @@ def app(appium_driver):
     print("\nTerminating app...")
     appium_driver.terminate_app(app_package)
 
-# Теперь давайте запустим новую активность
-# new_activity_package = 'com.saucelabs.mydemoapp.rn'
-# login_activity = '.NewActivity'
-# api_calls_activity = '.NewActivity'
-# api_calls_activity = '.NewActivity'
-# driver.start_activity(new_activity_package, new_activity_name)
+

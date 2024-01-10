@@ -17,7 +17,6 @@ class TestBuyProduct:
         product_steps = ProductSteps(app)
         product_steps.open_product_page()
         product_steps.choose_color('black')
-        product_steps.plus_counter()
         product_steps.add_to_cart()
 
         my_cart_steps = MyCartSteps(app)

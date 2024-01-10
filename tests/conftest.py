@@ -13,7 +13,7 @@ def appium_driver():
         'deviceName': '@Pixel_3a_API_34',
         'appium:automationName': 'UIAutomator2',
         'appium:app': 'C:\\Users\\mexriddin maxkamtaev\\PycharmProjects\\appium-homework-pr\\midterm_project\\app'
-                      '\MyDemoApp.apk'
+                      '\\MyDemoApp.apk'
 
     }
     options = AppiumOptions().load_capabilities(capabilities)
@@ -33,5 +33,3 @@ def app(appium_driver):
     yield appium_driver
     print("\nTerminating app...")
     appium_driver.terminate_app(app_package)
-
-

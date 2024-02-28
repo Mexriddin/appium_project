@@ -38,5 +38,3 @@ class ApiCallsSteps(BaseStep):
         elif error_type == 'not_found':
             assert self.get_text(ApiCallsPage.not_found_msg) == 'Not found', \
                 "Not found error message is not displayed"
-
-

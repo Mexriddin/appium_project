@@ -73,8 +73,10 @@ def pytest_runtest_makereport(item, call):
     rep = outcome.get_result()
     if rep.when == 'call' and rep.failed:
         os.makedirs('screenshots', exist_ok=True)
-        # os.makedirs('snapshots', exist_ok=True)
+        os.makedirs('snapshots', exist_ok=True)
         driver = item.funcargs['app']
+        take_screenshot(driver, item.nodeid)
+        take_snapshot(driver, item.nodeid)
 
 
 def take_screenshot(driver, nodeid: str) -> None:

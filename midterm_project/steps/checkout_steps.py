@@ -25,7 +25,6 @@ class CheckOutSteps(BaseStep):
 
     def enter_card_data(self, card_data):
         """ Step entering card data"""
-        self.driver.find_element(*CheckoutPage.full_name_input).click()
         self.fill(CheckoutPage.card_full_name_input, card_data.full_name)
         self.fill(CheckoutPage.card_number_input, card_data.card_number)
         self.fill(CheckoutPage.expiry_date_input, card_data.expiration_date)

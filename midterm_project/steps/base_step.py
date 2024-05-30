@@ -1,6 +1,7 @@
 from selenium.common import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
+from appium.webdriver.webelement import WebElement as MobileElement
 from selenium.webdriver.support import expected_conditions as EC
 from midterm_project.pages.base_page import BasePage
 
@@ -50,6 +51,15 @@ class BaseStep:
         """ Step returns text from element visible """
         self.wait.until(EC.visibility_of_element_located(locator))
         return self.driver.find_element(*locator).text
+
+    def get_center_of_element(self, element: MobileElement):
+        location = element.location
+        size = element.size
+
+        center_x = location['x'] + size['width'] / 2
+        center_y = location['y'] + size['height'] / 2
+
+        return tuple((int(center_x), int(center_y)))
 
     def swipe_to_bottom_until_element_is_displayed(self, locator):
         """ Step swipes to bottom until element is displayed"""

@@ -67,13 +67,13 @@ def app(request):
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call, request):
+def pytest_runtest_makereport(item, call):
     outcome = yield
     rep = outcome.get_result()
     if rep.when == 'call' and rep.failed:
         driver = item.funcargs['app']
         take_screenshot(driver, item.nodeid)
-        if request.config.getoption("--mode_run") == "remote_bs":
+        if item.config.getoption("--mode_run") == "remote_bs":
             take_snapshot(driver, item.nodeid)
 
 

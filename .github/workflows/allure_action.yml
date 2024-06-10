@@ -8,6 +8,8 @@ on:
 
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+  BROWSERSTACK_USERNAME: ${{secrets.BROWSERSTACK_USERNAME}}
+  BROWSERSTACK_ACCESS_KEY: ${{secrets.BROWSERSTACK_ACCESS_KEY}}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_ENDPOINT: https://blab.testops.cloud/
   ALLURE_PROJECT_ID: 1

@@ -1,3 +1,4 @@
+import allure
 import pytest
 
 from midterm_project.steps.products_steps import ProductsSteps
@@ -8,7 +9,12 @@ from midterm_project.steps.checkout_steps import CheckOutSteps
 from midterm_project.utils.utils import generate_shipping_address, generate_card_data, get_valid_login_data
 
 
+@allure.epic("Ordering an item")
 class TestBuyProduct:
+    @allure.title("The Product Order test")
+    @allure.description("The end-to-end test adds the product to the cart, login, "
+                        "enter the required fields for delivery address, payment method and place an order")
+    @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.smoke
     def test_ordering_an_item(self, app):
         products_step = ProductsSteps(app)

@@ -1,3 +1,4 @@
+import allure
 from selenium.common import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
@@ -13,14 +14,17 @@ class BaseStep:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 5, poll_frequency=1)
 
+    @allure.step("Open the menu section")
     def open_menus(self):
         """ Step to open the menu section """
         self.click_element(BasePage.open_menu_btn)
 
+    @allure.step("Click an element")
     def click_element(self, locator):
         """ Step to click an element """
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
+    @allure.step("Fill an element")
     def fill(self, locator, text):
         """ Step fills element with text """
         self.wait.until(EC.visibility_of_element_located(locator)).send_keys(text)
@@ -61,6 +65,7 @@ class BaseStep:
 
         return tuple((int(center_x), int(center_y)))
 
+    @allure.step("Swipe to bottom until element")
     def swipe_to_bottom_until_element_is_displayed(self, locator):
         """ Step swipes to bottom until element is displayed"""
         while True:
@@ -70,6 +75,7 @@ class BaseStep:
             except NoSuchElementException:
                 self.driver.swipe(100, 800, 100, 200, 300)
 
+    @allure.step("Swipe to top until element")
     def swipe_to_top_until_element_is_displayed(self, locator):
         """ Step swipes to top until element is displayed"""
         while True:

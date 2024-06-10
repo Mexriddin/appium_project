@@ -6,9 +6,10 @@ from datetime import datetime
 from appium import webdriver
 from appium.options.common.base import AppiumOptions
 from appium.options.android import UiAutomator2Options
-from config import user_config
+from dotenv import dotenv_values
 
 
+config = dotenv_values(".env")
 app_package = 'com.saucelabs.mydemoapp.rn'
 app_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         'midterm_project', 'app', 'MyDemoApp.apk')
@@ -44,8 +45,8 @@ def app(request):
                 f"sessionName": f"{request.node.name}",
 
                 # Set access credentials
-                "userName": user_config['BROWSERSTACK_USERNAME'],
-                "accessKey": user_config['BROWSERSTACK_ACCESS_KEY']
+                "userName": config['BROWSERSTACK_USERNAME'],
+                "accessKey": config['BROWSERSTACK_ACCESS_KEY']
             }
 
         }
@@ -96,7 +97,7 @@ def take_video_record(driver, nodeid: str) -> None:
 # Get video url by session id
 def get_video_url(session_id):
     url = f"https://api.browserstack.com/app-automate/sessions/{session_id}.json"
-    data = requests.get(url=url, auth=(user_config['BROWSERSTACK_USERNAME'], user_config['BROWSERSTACK_ACCESS_KEY'])).json()
+    data = requests.get(url=url, auth=(config['BROWSERSTACK_USERNAME'], config['BROWSERSTACK_ACCESS_KEY'])).json()
     return data["automation_session"]["video_url"]
 
 
@@ -104,6 +105,6 @@ def get_video_url(session_id):
 def uploaded_app_url():
     files = {'file': open(app_path, 'rb')}
     url = f"https://api-cloud.browserstack.com/app-automate/upload"
-    response = requests.post(url=url, files=files, auth=(user_config['BROWSERSTACK_USERNAME'],
-                                                         user_config['BROWSERSTACK_ACCESS_KEY']))
+    response = requests.post(url=url, files=files, auth=(config['BROWSERSTACK_USERNAME'],
+                                                         config['BROWSERSTACK_ACCESS_KEY']))
     return response.json().get("app_url")

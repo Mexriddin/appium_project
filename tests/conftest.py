@@ -1,7 +1,8 @@
+import os
 import pytest
 import requests
-from datetime import datetime
 import allure
+from datetime import datetime
 from appium import webdriver
 from appium.options.common.base import AppiumOptions
 from appium.options.android import UiAutomator2Options
@@ -10,6 +11,8 @@ from dotenv import dotenv_values
 
 config = dotenv_values(".env")
 app_package = 'com.saucelabs.mydemoapp.rn'
+app_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        'midterm_project', 'app', 'MyDemoApp.apk')
 
 
 def pytest_addoption(parser):
@@ -25,8 +28,7 @@ def app(request):
             'platformName': 'android',
             'deviceName': '@Pixel_3a_API_34',
             'appium:automationName': 'UIAutomator2',
-            'appium:app': 'C:\\Users\\mexriddin maxkamtaev\\PycharmProjects\\appium-homework-pr\\midterm_project\\app'
-                          '\\MyDemoApp.apk'
+            'appium:app': app_path
         }
         options = AppiumOptions().load_capabilities(capabilities)
         appium_driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", options=options)
@@ -35,7 +37,7 @@ def app(request):
             'platformName': 'android',
             'platformVersion': '9.0',
             'deviceName': 'Google Pixel 3a',
-            "app": "bs://7a04d670d0ee20c9499b17c676354d0f3243151d",
+            'app': uploaded_app_url(),
 
             'bstack:options': {
                 "projectName": "My Demo Project",
@@ -53,7 +55,7 @@ def app(request):
 
     print("\nStarting appium..")
     yield appium_driver
-    print("Quitting appium...")
+    print("\nQuitting appium...")
     appium_driver.quit()
 
 
@@ -74,7 +76,7 @@ def pytest_runtest_makereport(item, call):
         driver = item.funcargs['app']
         take_screenshot(driver, item.nodeid)
         if item.config.getoption("--mode_run") == "remote_bs":
-            take_snapshot(driver, item.nodeid)
+            take_video_record(driver, item.nodeid)
 
 
 def take_screenshot(driver, nodeid: str) -> None:
@@ -83,7 +85,7 @@ def take_screenshot(driver, nodeid: str) -> None:
     allure.attach(driver.get_screenshot_as_png(), name=filename, attachment_type=allure.attachment_type.PNG)
 
 
-def take_snapshot(driver, nodeid: str) -> None:
+def take_video_record(driver, nodeid: str) -> None:
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename = f"{nodeid}_{now}.mp4".replace("/", "_").replace("::", "__")
     body = f"""<html><body><video width='100%' height='100%' controls autoplay><source 
@@ -92,7 +94,17 @@ def take_snapshot(driver, nodeid: str) -> None:
     allure.attach(body=body, name=filename, attachment_type=allure.attachment_type.HTML)
 
 
+# Get video url by session id
 def get_video_url(session_id):
     url = f"https://api.browserstack.com/app-automate/sessions/{session_id}.json"
     data = requests.get(url=url, auth=(config['BROWSERSTACK_USERNAME'], config['BROWSERSTACK_ACCESS_KEY'])).json()
     return data["automation_session"]["video_url"]
+
+
+# Uploaded app and return app_url form browserstack
+def uploaded_app_url():
+    files = {'file': open(app_path, 'rb')}
+    url = f"https://api-cloud.browserstack.com/app-automate/upload"
+    response = requests.post(url=url, files=files, auth=(config['BROWSERSTACK_USERNAME'],
+                                                         config['BROWSERSTACK_ACCESS_KEY']))
+    return response.json().get("app_url")

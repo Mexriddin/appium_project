@@ -22,7 +22,10 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-addopts = ["-v"]
+addopts = """
+    -v
+    --alluredir allure-results
+"""
 testpaths = "tests"
 markers = [
     "positive: set positive test",

@@ -15,6 +15,7 @@ faker = "^22.0.0"
 python-dotenv = "^1.0.1"
 allure-pytest = "^2.13.2"
 requests = "^2.31.0"
+pytest-xdist = "^3.6.1"
 
 
 [build-system]

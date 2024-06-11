@@ -9,7 +9,11 @@ from appium.options.android import UiAutomator2Options
 from dotenv import dotenv_values, load_dotenv
 
 load_dotenv()
-config = dotenv_values(".env")
+# config = dotenv_values(".env")
+config = {
+    "BROWSERSTACK_USERNAME": os.environ.get("BROWSERSTACK_USERNAME"),
+    "BROWSERSTACK_ACCESS_KEY": os.environ.get("BROWSERSTACK_ACCESS_KEY")
+}
 
 app_package = 'com.saucelabs.mydemoapp.rn'
 app_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),

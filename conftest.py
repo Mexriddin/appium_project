@@ -106,6 +106,7 @@ def get_video_url(session_id):
 def uploaded_app_url():
     files = {'file': open(app_path, 'rb')}
     url = f"https://api-cloud.browserstack.com/app-automate/upload"
+    print(config.keys())
     response = requests.post(url=url, files=files, auth=(config['BROWSERSTACK_USERNAME'],
                                                          config['BROWSERSTACK_ACCESS_KEY']))
     return response.json().get("app_url")

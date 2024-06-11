@@ -11,7 +11,7 @@ class LogoutSteps(BaseStep):
     def logout(self):
         """ Step logout"""
         self.open_menus()
-        self.click_element(BasePage.menu_item_logout)
+        self.click_element(BasePage.menu_item_logout, "Logout section")
         self.alert_is_present().accept()
 
     @allure.step("Check logout")

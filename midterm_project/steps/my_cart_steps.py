@@ -13,7 +13,7 @@ class MyCartSteps(BaseStep):
     @allure.step("Open empty my cart page")
     def open_my_cart_page(self):
         """ Step opening empty my cart page """
-        self.click_element(BasePage.cart_badge)
+        self.click_element(BasePage.cart_badge, "Card badge icon")
 
     @allure.step("Check empty My cart")
     def check_empty_my_cart(self):
@@ -23,13 +23,13 @@ class MyCartSteps(BaseStep):
     @allure.step("Open not empty My cart")
     def open_not_empty_my_cart_page(self):
         """ Step opening not empty My cart """
-        self.click_element(ProductsPage.first_product)
-        self.click_element(ProductPage.add_to_cart_button)
+        self.click_element(ProductsPage.first_product, "First product")
+        self.click_element(ProductPage.add_to_cart_button, "Add To Cart button")
 
         # self.driver.back()
         # self.click_element(ProductsPage.second_product)
         # self.click_element(ProductPage.add_to_cart_button)
-        self.click_element(BasePage.cart_badge)
+        self.click_element(BasePage.cart_badge, "Card badge icon")
 
     @allure.step("Plus counter product")
     def plus_counter(self, count=1):

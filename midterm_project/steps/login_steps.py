@@ -13,16 +13,16 @@ class LoginSteps(BaseStep):
     def open_login_page(self):
         """ Step opening login page"""
         self.open_menus()
-        self.click_element(BasePage().menu_item_login)
+        self.click_element(BasePage().menu_item_login, "Login section")
         assert self.get_text(LoginPage.login_title) == "Login", "The Login page didn't open"
 
     @allure.step("Login with username and password")
     def login(self, username, password):
         """ Step logining with username and password"""
         if self.is_element_present(LoginPage.login_title):
-            self.fill(LoginPage.input_username, username)
-            self.fill(LoginPage.input_password, password)
-            self.click_element(LoginPage.login_button)
+            self.fill(LoginPage.input_username, username, "Username input")
+            self.fill(LoginPage.input_password, password, "Password input")
+            self.click_element(LoginPage.login_button, "Login button")
 
     @allure.step("Check if successful login")
     def check_successful_login(self):
@@ -32,7 +32,7 @@ class LoginSteps(BaseStep):
     @allure.step("Check if locked user login")
     def check_locked_out(self):
         """ Step checking if locked user login"""
-        assert self.get_text(LoginPage.generic_err_msg) == 'Sorry, this user has been locked out.', \
+        assert self.get_text(LoginPage.generic_err_msg) == 'Sorrry, this user has been locked out.', \
             "This user is blocked but logged in"
 
     @allure.step("Check if user does not exist")

@@ -13,7 +13,7 @@ class ProductSteps(BaseStep):
     def open_product_page(self):
         """ Step opening product page """
         product_name = self.get_text(ProductsPage.first_product)
-        self.click_element(ProductsPage.first_product)
+        self.click_element(ProductsPage.first_product, "First product")
         assert self.get_text(ProductPage.product_title) == product_name, "The Product page did not open"
 
     @allure.step("Choose product color")
@@ -28,13 +28,13 @@ class ProductSteps(BaseStep):
     def plus_counter(self, count=1):
         """ Step plus counter product """
         for _ in range(count):
-            self.click_element(ProductPage.counter_plus_btn)
+            self.click_element(ProductPage.counter_plus_btn, "Plus counter icon")
         assert self.get_text(ProductPage.counter_amount) == str(1+count), "Counter amount was not added"
 
     @allure.step("Click Add to cart")
     def add_to_cart(self):
         """ Step adding to cart"""
-        self.click_element(ProductPage.add_to_cart_button)
+        self.click_element(ProductPage.add_to_cart_button, "Add To Cart button")
 
     @allure.step("Check to see if item is added to cart")
     def check_added_to_cart(self):

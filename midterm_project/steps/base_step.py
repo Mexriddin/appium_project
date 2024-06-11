@@ -19,13 +19,13 @@ class BaseStep:
         """ Step to open the menu section """
         self.click_element(BasePage.open_menu_btn)
 
-    @allure.step("Click an element")
-    def click_element(self, locator):
+    @allure.step("Click {name}")
+    def click_element(self, locator, name):
         """ Step to click an element """
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
-    @allure.step("Fill an element")
-    def fill(self, locator, text):
+    @allure.step("Fill {name}")
+    def fill(self, locator, text, name):
         """ Step fills element with text """
         self.wait.until(EC.visibility_of_element_located(locator)).send_keys(text)
 

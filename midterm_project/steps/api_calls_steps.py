@@ -12,14 +12,14 @@ class ApiCallsSteps(BaseStep):
     def open_api_calls_page(self):
         """ Step opening api calls page """
         self.open_menus()
-        self.click_element(BasePage().menu_item_api_calls)
+        self.click_element(BasePage().menu_item_api_calls, name="Api Calls section")
         assert self.get_text(ApiCallsPage.api_calls_title) == "API calls", "The API calls page did not open"
 
     @allure.step("Call the devices")
     def call_devices(self):
         """ Step call the devices """
         self.wait_disappears_element(ApiCallsPage.loading_dc)
-        self.click_element(ApiCallsPage.us_dc)
+        self.click_element(ApiCallsPage.us_dc, name="Devices tab")
 
     @allure.step("Check the devices is visible")
     def check_devices(self):
@@ -32,9 +32,9 @@ class ApiCallsSteps(BaseStep):
         """ Step call the devices with errors """
         self.wait_disappears_element(ApiCallsPage.loading_dc)
         if error_type == 'unauthorized':
-            self.click_element(ApiCallsPage.unauthorized_btn)
+            self.click_element(ApiCallsPage.unauthorized_btn, "Unauthorized tab")
         elif error_type == 'not_found':
-            self.click_element(ApiCallsPage.not_found_btn)
+            self.click_element(ApiCallsPage.not_found_btn, "Not found tab")
 
     @allure.step("Check call the devices with error:{error_type}")
     def check_devices_error(self, error_type):

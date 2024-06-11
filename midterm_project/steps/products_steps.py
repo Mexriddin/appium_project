@@ -12,13 +12,13 @@ class ProductsSteps(BaseStep):
     def open_products_page(self):
         """ Step opening products page """
         self.open_menus()
-        self.click_element(BasePage().menu_item_catalog)
+        self.click_element(BasePage().menu_item_catalog, "Catalog section")
         assert self.get_text(ProductsPage.products_title) == "Products", "The Products page did not open"
 
     @allure.step("Open sort tab")
     def open_sort_tab(self):
         """ Step opening sort tab"""
-        self.click_element(ProductsPage.sort_button)
+        self.click_element(ProductsPage.sort_button, "Sort icon")
         assert self.get_text(ProductsPage.sort_title) == "Sort by:", "The Sort tab did not open"
 
     @allure.step("Choose sort by {sort_by} with {sort_name}")
@@ -26,14 +26,14 @@ class ProductsSteps(BaseStep):
         """ Step choosing sort"""
         if sort_by == 'price':
             if sort_name == "asc":
-                self.click_element(ProductsPage.sort_by_price_asc)
+                self.click_element(ProductsPage.sort_by_price_asc, "Price-Asc")
             elif sort_name == "desc":
-                self.click_element(ProductsPage.sort_by_price_desc)
+                self.click_element(ProductsPage.sort_by_price_desc, "Price-Desc")
         elif sort_by == 'name':
             if sort_name == "asc":
-                self.click_element(ProductsPage.sort_by_name_asc)
+                self.click_element(ProductsPage.sort_by_name_asc, "Name-Asc")
             elif sort_name == "desc":
-                self.click_element(ProductsPage.sort_by_name_desc)
+                self.click_element(ProductsPage.sort_by_name_desc, "Name-Desc")
 
     @allure.step("Check sort")
     def check_sorted(self, sort_name, sort_by):
@@ -60,12 +60,12 @@ class ProductsSteps(BaseStep):
     @allure.step("Review the product")
     def review_product(self):
         """ Step review the product"""
-        self.click_element(ProductsPage.star_rating)
+        self.click_element(ProductsPage.star_rating, "Star rating icon")
 
     @allure.step("Check the review")
     def check_review(self):
         """ Step check the review """
         assert self.get_text(ProductsPage.review_title) == "Thank you for submitting your review!", \
             "The Review tab did not open"
-        self.click_element(ProductsPage.close_modal_btn)
+        self.click_element(ProductsPage.close_modal_btn, "Close Modal button")
 

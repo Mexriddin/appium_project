@@ -6,10 +6,11 @@ from datetime import datetime
 from appium import webdriver
 from appium.options.common.base import AppiumOptions
 from appium.options.android import UiAutomator2Options
-from dotenv import dotenv_values
+from dotenv import dotenv_values, load_dotenv
 
-
+load_dotenv()
 config = dotenv_values(".env")
+
 app_package = 'com.saucelabs.mydemoapp.rn'
 app_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         'midterm_project', 'app', 'MyDemoApp.apk')

@@ -17,10 +17,10 @@ class BaseStep:
     @allure.step("Open the menu section")
     def open_menus(self):
         """ Step to open the menu section """
-        self.click_element(BasePage.open_menu_btn)
+        self.click_element(BasePage.open_menu_btn, "Menu button")
 
     @allure.step("Click {name}")
-    def click_element(self, locator, name):
+    def click_element(self, locator, name=None):
         """ Step to click an element """
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 

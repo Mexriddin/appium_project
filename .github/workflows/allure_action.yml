@@ -8,8 +8,6 @@ on:
 
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-  BROWSERSTACK_USERNAME: ${{secrets.BROWSERSTACK_USERNAME}}
-  BROWSERSTACK_ACCESS_KEY: ${{secrets.BROWSERSTACK_ACCESS_KEY}}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_ENDPOINT: https://blab.testops.cloud/
   ALLURE_PROJECT_ID: 1
@@ -42,6 +40,9 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
-      - name: Build with Gradle
+      - name: Run tests
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: allurectl watch -- poetry run pytest --mode_run remote_bs
 

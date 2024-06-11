@@ -12,7 +12,7 @@ load_dotenv()
 config = dotenv_values(".env")
 
 app_package = 'com.saucelabs.mydemoapp.rn'
-app_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+app_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         'midterm_project', 'app', 'MyDemoApp.apk')
 
 

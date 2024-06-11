@@ -31,10 +31,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          curl -o allure-2.13.8.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
-          tar -zxvf allure-2.13.8.tgz -C /opt/ 
-          ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure 
-          rm allure-2.13.8.tgz
+          wget https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz
+          tar -zxvf allure-2.20.1.tgz
+          mv allure-2.20.1 ~/allure
+          echo "$HOME/allure/bin" >> $GITHUB_PATH
           pip install poetry
           poetry install
 

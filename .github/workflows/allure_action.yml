@@ -12,8 +12,6 @@ env:
   ALLURE_ENDPOINT: https://blab.testops.cloud/
   ALLURE_PROJECT_ID: 1
   ALLURE_RESULTS: build/allure-results
-  BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-  BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
 permissions:
   contents: read
@@ -42,12 +40,9 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
-
-      - name: Use environment variables
-        run: |
-          echo $BROWSERSTACK_USERNAME
-          echo $BROWSERSTACK_ACCESS_KEY
-
       - name: Run tests
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: allurectl watch -- poetry run pytest --mode_run remote_bs
 

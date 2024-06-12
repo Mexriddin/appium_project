@@ -2,7 +2,7 @@
 
 <br>
 <p align="center">
-<img width="122" title="Tinkoff" src="media/logo/mydemoapp.png" alt="demoaapp">
+<img width="122" title="DemoApp" src="media/logo/mydemoapp.png" alt="demoaapp">
 </p>
 <br>
 

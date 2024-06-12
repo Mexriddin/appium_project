@@ -8,17 +8,16 @@
 
 ##  📌Содержание:
 
+- [Использованный стек технологий](#tools)
+- [Реализованные проверки](#checks)
+- [Запуск тестов](#test_run)
+- [Сборка в GitHub Action](#github-action)
+- [Пример Allure-отчета](#allure_report)
+- [Интеграция с Allure TestOps](#testops)
+- [Уведомления в Telegram с использованием бота](#notification)
+- [Видео примера запуска теста в BrowserStack](#browserstack)
 
-- [Использованный стек технологий](#использованный-стек-технологий)
-- [Реализованные проверки](#реализованные-проверки)
-- [Запуск тестов](#запуск-тестов)
-- [Сборка в Jenkins](#-сборка-в-jenkins)
-- [Пример Allure-отчета](![Снимок экрана 2024-06-12 004831.png](..%2F..%2FOneDrive%2F%D0%E0%E1%EE%F7%E8%E9%20%F1%F2%EE%EB%2Fdock%2F%D1%ED%E8%EC%EE%EA%20%FD%EA%F0%E0%ED%E0%202024-06-12%20004831.png)#-пример-allure-отчета)
-- [Интеграция с Allure TestOps](#-интеграция-с-allure-testops)
-- [Уведомления в Telegram с использованием бота](#-уведомления-в-telegram-с-использованием-бота)
-- [Видео примера запуска теста в Selenoid](#-видео-примера-запуска-теста-в-selenoid)
-
-## Использованный стек технологий
+<h2 id="tools">Использованный стек технологий</h2>
 
 <p align="center">
 <code><a href="https://www.python.org/"><img width="6%" title="Python" src="media/logo/python.png"></a></code>
@@ -54,15 +53,15 @@ Allure-отчет включает в себя:
 * скриншот и видеозапись экрана в устройстве в момент подение автотеста;
 * логи браузерной консоли;
 
-## Реализованные проверки
 
+ <h2 id="checks">Реализованные проверки </h2>
 - [x] *Проверка логирование пользователя*
 - [x] *Проверка добавление продукта в корзинку*
 - [x] *Проверка сортировки продуктов*
 - [x] *Проверка оформление покупки*
 - [x] *Проверка АПИ запросов*
 
-## Запуск тестов
+<h2 id="test_run">Запуск тестов</h2>
 Перед выполением необходимо:
 * в .env определить параметры конфигурации:
     - `BROWSERSTACK_USERNAME`
@@ -87,12 +86,13 @@ poetry run pytest --mode_run remote_bs
 ```
 При необходимости также можно переопределить параметры запуска
 
-## <img width="4%" style="vertical-align:middle" title="GitHub Action" src="media/logo/action.png"> <a href="https://github.com/Mexriddin/appium_project/actions/workflows/allure_action.yml"> Сборка в GitHub Action</a>
+<h2 id="github-action"><img width="3%" title="GitHub Action" src="media/logo/action.png"> <a href="https://github.com/Mexriddin/appium_project/actions/workflows/allure_action.yml"> Сборка в GitHub Action</a></h2>
+
 <p align="center">
-<img title="Jenkins Build" src="media/screenshots/github_action.png">
+<img title="GitHub Action" src="media/screenshots/github_action.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logo/AllureReports.png"> <a href="https://mexriddin.github.io/appium_project/">Пример Allure-отчета</a>
+<h2 id="allure_report"><img width="3%" title="Allure Report" src="media/logo/AllureReports.png"> <a href="https://mexriddin.github.io/appium_project/">Пример Allure-отчета</a></h2>
 ### Обзор
 
 <p align="center">
@@ -105,7 +105,7 @@ poetry run pytest --mode_run remote_bs
 <img title="Test Results in Alure" src="media/screenshots/allure_report_result.png">
 </p>
 
-## <img width="4%" title="Allure TestOPS" src="media/logo/allureTestOps.svg"> Интеграция с [Allure TestOps](https://qameta.io/)
+<h2 id="testops"> <img width="3%" title="Allure TestOPS" src="media/logo/allureTestOps.svg"> <a href="https://blab.testops.cloud/project/1/test-cases?treeId=0">Интеграция с Allure TestOps</a></h2>
 
 ### Запуски
 
@@ -145,10 +145,22 @@ poetry run pytest --mode_run remote_bs
 
 
 
-### <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logo/Telegram.png"> Уведомления в Telegram с использованием бота
+<h2 id="notification"><img width="3%" style="vertical-align:middle" title="Telegram" src="media/logo/Telegram.png"> Уведомления в Telegram с использованием бота</h2>
 
 После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне.
 
 <p align="center">
 <img width="70%" title="Telegram Notifications" src="media/screenshots/notification.png">
+</p>
+
+### <img width="3%" title="BrowserStack" src="media/logo/BrowserStack.svg"> Видео примера запуска теста в BrowserStack
+
+К каждому тесту прилагается видео. Одно из таких видео представлено ниже.
+<p align="center">
+  <img title="BrowserStack Video" src="media/gifs/remote_run.gif">
+</p>
+
+### <img width="3%" title="Local run" src="media/logo/AndroidStudio.svg"> Видео примера запуска теста в эмуляторе
+<p align="center">
+  <img title="BrowserStack Video" src="media/gifs/local_run.gif">
 </p>

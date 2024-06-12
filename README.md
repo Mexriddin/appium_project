@@ -106,7 +106,7 @@ poetry run pytest --mode_run remote_bs
 <img title="Test Results in Alure" src="media/screenshots/allure_report_result.png">
 </p>
 
-<h2 id="testops"> <img width="3%" title="Allure TestOPS" src="media/logo/allureTestOps.svg"> <a href="https://blab.testops.cloud/project/1/test-cases?treeId=0">Интеграция с Allure TestOps</a></h2>
+<h2 id="testops"> <img width="3%" title="Allure TestOPS" src="media/logo/AllureTestOps.svg"> <a href="https://blab.testops.cloud/project/1/test-cases?treeId=0">Интеграция с Allure TestOps</a></h2>
 
 ### Запуски
 

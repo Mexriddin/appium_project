@@ -1,2 +1,4 @@
 .idea
 .env
+allure-report
+allure-result

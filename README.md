@@ -154,7 +154,7 @@ poetry run pytest --mode_run remote_bs
 <img width="70%" title="Telegram Notifications" src="media/screenshots/notification.png">
 </p>
 
-### <img width="3%" title="BrowserStack" src="media/logo/BrowserStack.svg"> Видео примера запуска теста в BrowserStack
+### <img width="3%" title="BrowserStack" src="media/logo/Browserstack.svg"> Видео примера запуска теста в BrowserStack
 
 К каждому тесту прилагается видео. Одно из таких видео представлено ниже.
 <p align="center">

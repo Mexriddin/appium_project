@@ -93,6 +93,7 @@ poetry run pytest --mode_run remote_bs
 </p>
 
 <h2 id="allure_report"><img width="3%" title="Allure Report" src="media/logo/AllureReports.png"> <a href="https://mexriddin.github.io/appium_project/">Пример Allure-отчета</a></h2>
+
 ### Обзор
 
 <p align="center">
